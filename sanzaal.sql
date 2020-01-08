@@ -164,7 +164,7 @@ FUNCTION ladder(X IN labell,Y IN numarray)RETURN labell IS  expp1 labell; char V
              
              expp1(concat(name(i),concat('-',SUBSTR(to_char(n),1)))) := Y(j);
              
-              elsif (n=4) and (char = 'false') and checks2((concat(name(i),concat('-',SUBSTR(to_char(3),1)))),expp1)='true' then
+              elsif (n=4) and (char = 'false') and checks2((concat(name(i),concat('-',SUBSTR(to_char(3),1)))),expp1)='true'  or ((n=4) and checks2((concat(name(i),concat('-',SUBSTR(to_char(2),1)))),expp1)='true' and counter2flag ='true' ) then
              
              expp1(concat(name(i),concat('-',SUBSTR(to_char(n),1)))) := Y(j);
              
@@ -172,14 +172,14 @@ FUNCTION ladder(X IN labell,Y IN numarray)RETURN labell IS  expp1 labell; char V
              
              expp1(concat(name(i),concat('-',SUBSTR(to_char(n),1)))) := Y(j);
              
-             elsif (n=6) and (char = 'false') and checks2((concat(name(i),concat('-',SUBSTR(to_char(5),1)))),expp1)='true' then
+             elsif (n=6) and (char = 'false') and checks2((concat(name(i),concat('-',SUBSTR(to_char(5),1)))),expp1)='true' or ((n=6) and checks2((concat(name(i),concat('-',SUBSTR(to_char(4),1)))),expp1)='true' and counter2flag ='true' ) then
              
              expp1(concat(name(i),concat('-',SUBSTR(to_char(n),1)))) := Y(j);
              
              elsif (n=7) and (char = 'false') and checks2((concat(name(i),concat('-',SUBSTR(to_char(6),1)))),expp1)='true' then
              
              expp1(concat(name(i),concat('-',SUBSTR(to_char(n),1)))) := Y(j);
-             elsif (n=8) and (char = 'false') and checks2((concat(name(i),concat('-',SUBSTR(to_char(7),1)))),expp1)='true' then
+             elsif (n=8) and (char = 'false') and checks2((concat(name(i),concat('-',SUBSTR(to_char(7),1)))),expp1)='true' or ((n=8) and checks2((concat(name(i),concat('-',SUBSTR(to_char(6),1)))),expp1)='true' and counter2flag ='true' )then
              
              expp1(concat(name(i),concat('-',SUBSTR(to_char(n),1)))) := Y(j);
              
