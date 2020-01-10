@@ -128,7 +128,8 @@ FUNCTION ladder(X IN labell,Y IN numarray)RETURN labell IS  new_expression label
                 new_expression(concat(name(i),concat('+',SUBSTR(to_char(n),2)))) := Y(j);
                 flag := 'true' ;
              
-             elsif ((n=-2) and flag = 'true' and (char = 'false') and (checks_condition_2((concat(name(i),concat('+',SUBSTR(to_char(1),1)))),new_expression)='true')) or ((n=-2)  and flag != 'false' and(checks_condition_1(Y(j),X)='false') and counter2flag ='true' )  then
+             elsif ((n=-2) and flag = 'true' and (char = 'false') and (checks_condition_2((concat(name(i),concat('+',SUBSTR(to_char(1),1)))),new_expression)='true')) or
+                ((n=-2)  and flag != 'false' and(checks_condition_1(Y(j),X)='false') and counter2flag ='true' )  then
              
                 new_expression(concat(name(i),concat('+',SUBSTR(to_char(n),2)))) := Y(j);
                 flag := 'true';
@@ -138,7 +139,8 @@ FUNCTION ladder(X IN labell,Y IN numarray)RETURN labell IS  new_expression label
                 new_expression(concat(name(i),concat('+',SUBSTR(to_char(n),2)))) := Y(j);
                 flag := 'true';
              
-             elsif ((n=-4) and  flag = 'true' and (char = 'false') and checks_condition_2((concat(name(i),concat('+',SUBSTR(to_char(3),1)))),new_expression)='true') or ((n=-4) and  flag = 'true' and checks_condition_2((concat(name(i),concat('+',SUBSTR(to_char(2),1)))),new_expression)='true' and counter2flag ='true' ) then
+             elsif ((n=-4) and  flag = 'true' and (char = 'false') and checks_condition_2((concat(name(i),concat('+',SUBSTR(to_char(3),1)))),new_expression)='true') or 
+                ((n=-4) and  flag = 'true' and checks_condition_2((concat(name(i),concat('+',SUBSTR(to_char(2),1)))),new_expression)='true' and counter2flag ='true' ) then
              
                 new_expression(concat(name(i),concat('+',SUBSTR(to_char(n),2)))) := Y(j);
                 flag := 'true';
@@ -148,7 +150,8 @@ FUNCTION ladder(X IN labell,Y IN numarray)RETURN labell IS  new_expression label
                 new_expression(concat(name(i),concat('+',SUBSTR(to_char(n),2)))) := Y(j);
                 flag := 'true';
              
-              elsif ((n=-6) and flag = 'true' and (char = 'false') and checks_condition_2((concat(name(i),concat('+',SUBSTR(to_char(5),1)))),new_expression)='true') or ((n=-6) and flag = 'true' and checks_condition_2((concat(name(i),concat('+',SUBSTR(to_char(4),1)))),new_expression)='true'  and counter2flag ='true') then
+              elsif ((n=-6) and flag = 'true' and (char = 'false') and checks_condition_2((concat(name(i),concat('+',SUBSTR(to_char(5),1)))),new_expression)='true') or
+                ((n=-6) and flag = 'true' and checks_condition_2((concat(name(i),concat('+',SUBSTR(to_char(4),1)))),new_expression)='true'  and counter2flag ='true') then
              
                 new_expression(concat(name(i),concat('+',SUBSTR(to_char(n),2)))) := Y(j);
                 flag := 'true';
@@ -158,7 +161,8 @@ FUNCTION ladder(X IN labell,Y IN numarray)RETURN labell IS  new_expression label
                 new_expression(concat(name(i),concat('+',SUBSTR(to_char(n),2)))) := Y(j);
                 flag := 'true';
               
-              elsif ((n=-8) and flag = 'true' and (char = 'false') and checks_condition_2((concat(name(i),concat('+',SUBSTR(to_char(7),1)))),new_expression)='true') or ((n=-6) and flag = 'true' and checks_condition_2((concat(name(i),concat('+',SUBSTR(to_char(6),1)))),new_expression)='true'  and counter2flag ='true') then
+              elsif ((n=-8) and flag = 'true' and (char = 'false') and checks_condition_2((concat(name(i),concat('+',SUBSTR(to_char(7),1)))),new_expression)='true') or
+                ((n=-6) and flag = 'true' and checks_condition_2((concat(name(i),concat('+',SUBSTR(to_char(6),1)))),new_expression)='true'  and counter2flag ='true') then
              
                 new_expression(concat(name(i),concat('+',SUBSTR(to_char(n),2)))) := Y(j);
                 flag := 'true';
@@ -167,7 +171,8 @@ FUNCTION ladder(X IN labell,Y IN numarray)RETURN labell IS  new_expression label
              
                 new_expression(concat(name(i),concat('-',SUBSTR(to_char(n),1)))) := Y(j);
                 flag := 'true';
-             elsif (n=2) and flag = 'true' and (char = 'false') and checks_condition_2((concat(name(i),concat('-',SUBSTR(to_char(1),1)))),new_expression)='true' or ((n=2)  and flag != 'false' and (checks_condition_1(Y(j),X)='false') and counter2flag ='true' ) then
+             elsif (n=2) and flag = 'true' and (char = 'false') and checks_condition_2((concat(name(i),concat('-',SUBSTR(to_char(1),1)))),new_expression)='true' or
+                ((n=2)  and flag != 'false' and (checks_condition_1(Y(j),X)='false') and counter2flag ='true' ) then
              
                 new_expression(concat(name(i),concat('-',SUBSTR(to_char(n),1)))) := Y(j);
                 flag := 'true';
@@ -177,7 +182,8 @@ FUNCTION ladder(X IN labell,Y IN numarray)RETURN labell IS  new_expression label
                 new_expression(concat(name(i),concat('-',SUBSTR(to_char(n),1)))) := Y(j);
                 flag := 'true';
              
-              elsif (n=4) and flag = 'true' and (char = 'false') and checks_condition_2((concat(name(i),concat('-',SUBSTR(to_char(3),1)))),new_expression)='true'  or ((n=4) and flag = 'true'  and checks_condition_2((concat(name(i),concat('-',SUBSTR(to_char(2),1)))),new_expression)='true' and counter2flag ='true' ) then
+              elsif (n=4) and flag = 'true' and (char = 'false') and checks_condition_2((concat(name(i),concat('-',SUBSTR(to_char(3),1)))),new_expression)='true'  or
+                ((n=4) and flag = 'true'  and checks_condition_2((concat(name(i),concat('-',SUBSTR(to_char(2),1)))),new_expression)='true' and counter2flag ='true' ) then
              
                 new_expression(concat(name(i),concat('-',SUBSTR(to_char(n),1)))) := Y(j);
                 flag := 'true';
@@ -187,7 +193,8 @@ FUNCTION ladder(X IN labell,Y IN numarray)RETURN labell IS  new_expression label
                 new_expression(concat(name(i),concat('-',SUBSTR(to_char(n),1)))) := Y(j);
                 flag := 'true';
              
-             elsif (n=6) and flag = 'true' and (char = 'false') and checks_condition_2((concat(name(i),concat('-',SUBSTR(to_char(5),1)))),new_expression)='true' or ((n=6) and flag = 'true' and checks_condition_2((concat(name(i),concat('-',SUBSTR(to_char(4),1)))),new_expression)='true' and counter2flag ='true' ) then
+             elsif (n=6) and flag = 'true' and (char = 'false') and checks_condition_2((concat(name(i),concat('-',SUBSTR(to_char(5),1)))),new_expression)='true' or
+                ((n=6) and flag = 'true' and checks_condition_2((concat(name(i),concat('-',SUBSTR(to_char(4),1)))),new_expression)='true' and counter2flag ='true' ) then
              
                 new_expression(concat(name(i),concat('-',SUBSTR(to_char(n),1)))) := Y(j);
                 flag := 'true';
@@ -197,7 +204,8 @@ FUNCTION ladder(X IN labell,Y IN numarray)RETURN labell IS  new_expression label
                  new_expression(concat(name(i),concat('-',SUBSTR(to_char(n),1)))) := Y(j);
                  flag := 'true';
                  
-             elsif (n=8) and flag = 'true' and (char = 'false') and checks_condition_2((concat(name(i),concat('-',SUBSTR(to_char(7),1)))),new_expression)='true' or ((n=8) and flag = 'true' and checks_condition_2((concat(name(i),concat('-',SUBSTR(to_char(6),1)))),new_expression)='true' and counter2flag ='true' )then
+             elsif (n=8) and flag = 'true' and (char = 'false') and checks_condition_2((concat(name(i),concat('-',SUBSTR(to_char(7),1)))),new_expression)='true' or
+                ((n=8) and flag = 'true' and checks_condition_2((concat(name(i),concat('-',SUBSTR(to_char(6),1)))),new_expression)='true' and counter2flag ='true' )then
              
                 new_expression(concat(name(i),concat('-',SUBSTR(to_char(n),1)))) := Y(j);
                 flag := 'true';
@@ -291,24 +299,22 @@ FUNCTION getPattern(X IN NUMBER)RETURN VARCHAR2 IS pattern VARCHAR2(30); tables 
     
    for i in new_number_array.FIRST .. new_number_array.LAST loop
     if new_number_array(i)!='0' then
-        if (pattern_label(new_number_array(i)) = 'multiple') and specialpattern ='false' then 
+        if (pattern_label(new_number_array(i)) = 'multiple')  then 
              expression(new_number_array(i)) := name(countt);
              similar(countt) := new_number_array(i);
              new_expression(name(countt)) := new_number_array(i);
              countt := countt + 1;
-             specialpattern := 'true';
-             
-       elsif   (pattern_label(new_number_array(i)) = 'multiple') and specialpattern ='true' then     
-            expression(new_number_array(i)) := 'o';
-            specialpattern := 'true'; 
+
+            
+            
              
         else 
             expression(new_number_array(i)) := 'o';
-            specialpattern := 'false';
+            
     
         end if;
-        else
-        specialpattern := 'false';
+        
+        
      end if;
     end loop;
     if countt-1 >4 then
@@ -682,11 +688,11 @@ FUNCTION getName(pattern IN VARCHAR2) RETURN VARCHAR2 IS name VARCHAR2(50);
 
 BEGIN 
    
-    for i in 76000000 .. 76001000   loop
+   for i in 76000000 .. 76001000   loop
         x :=i;
         pattern := getPattern(x); 
         pattern_name := getName(pattern);
-        INSERT INTO PATTERNS (numbers,pattern,name) VALUES (i,pattern,pattern_name);
+       INSERT INTO PATTERNS (numbers,pattern,name) VALUES (i,pattern,pattern_name);
         --DBMS_OUTPUT.PUT_LINE(x||'----------------------'||pattern||'-----------'||pattern_name);
-   end loop;
+  end loop;
 END; 
