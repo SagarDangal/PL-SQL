@@ -118,7 +118,7 @@ FUNCTION checks_condition_1(X IN VARCHAR2,names labell) RETURN VARCHAR2 is bool 
         return 'false';
     end;
  
-FUNCTION ladder(X IN labell,Y IN numarray)RETURN labell IS  expp1 labell; char VARCHAR(200); n NUMBER(10); flag VARCHAR2(20); patt varchar2(20);
+FUNCTION ladder(X IN labell,Y IN numarray)RETURN labell IS  new_expression labell; char VARCHAR(200); n NUMBER(10); flag VARCHAR2(20); patt varchar2(20);
  
  BEGIN
     
@@ -132,91 +132,91 @@ FUNCTION ladder(X IN labell,Y IN numarray)RETURN labell IS  expp1 labell; char V
             
              n := to_number(X(i)) - to_number(Y(j));
              char := checks_condition_1(Y(j),X);
-            patt := checks_condition_1(y(j),expp1);
-                --DBMS_OUTPUT.PUT_LINE(X(i)||'-------'||Y(j)||'---------'||flag||patt);
+             patt := checks_condition_1(y(j),new_expression);
+               
             
              if (n=-1) and flag != 'false' and  (checks_condition_1(Y(j),X)='false')   then
              
-                expp1(concat(name(i),concat('+',SUBSTR(to_char(n),2)))) := Y(j);
+                new_expression(concat(name(i),concat('+',SUBSTR(to_char(n),2)))) := Y(j);
                 flag := 'true' ;
              
-             elsif ((n=-2) and flag = 'true' and (char = 'false') and (checks_condition_2((concat(name(i),concat('+',SUBSTR(to_char(1),1)))),expp1)='true')) or ((n=-2)  and flag != 'false' and(checks_condition_1(Y(j),X)='false') and counter2flag ='true' )  then
+             elsif ((n=-2) and flag = 'true' and (char = 'false') and (checks_condition_2((concat(name(i),concat('+',SUBSTR(to_char(1),1)))),new_expression)='true')) or ((n=-2)  and flag != 'false' and(checks_condition_1(Y(j),X)='false') and counter2flag ='true' )  then
              
-                expp1(concat(name(i),concat('+',SUBSTR(to_char(n),2)))) := Y(j);
+                new_expression(concat(name(i),concat('+',SUBSTR(to_char(n),2)))) := Y(j);
                 flag := 'true';
                 
-             elsif (n=-3) and  flag = 'true' and (char = 'false') and checks_condition_2((concat(name(i),concat('+',SUBSTR(to_char(2),1)))),expp1)='true' then
+             elsif (n=-3) and  flag = 'true' and (char = 'false') and checks_condition_2((concat(name(i),concat('+',SUBSTR(to_char(2),1)))),new_expression)='true' then
              
-                expp1(concat(name(i),concat('+',SUBSTR(to_char(n),2)))) := Y(j);
+                new_expression(concat(name(i),concat('+',SUBSTR(to_char(n),2)))) := Y(j);
                 flag := 'true';
              
-             elsif ((n=-4) and  flag = 'true' and (char = 'false') and checks_condition_2((concat(name(i),concat('+',SUBSTR(to_char(3),1)))),expp1)='true') or ((n=-4) and  flag = 'true' and checks_condition_2((concat(name(i),concat('+',SUBSTR(to_char(2),1)))),expp1)='true' and counter2flag ='true' ) then
+             elsif ((n=-4) and  flag = 'true' and (char = 'false') and checks_condition_2((concat(name(i),concat('+',SUBSTR(to_char(3),1)))),new_expression)='true') or ((n=-4) and  flag = 'true' and checks_condition_2((concat(name(i),concat('+',SUBSTR(to_char(2),1)))),new_expression)='true' and counter2flag ='true' ) then
              
-                expp1(concat(name(i),concat('+',SUBSTR(to_char(n),2)))) := Y(j);
+                new_expression(concat(name(i),concat('+',SUBSTR(to_char(n),2)))) := Y(j);
                 flag := 'true';
              
-              elsif (n=-5) and  flag = 'true' and (char = 'false') and checks_condition_2((concat(name(i),concat('+',SUBSTR(to_char(4),1)))),expp1)='true'  then
+              elsif (n=-5) and  flag = 'true' and (char = 'false') and checks_condition_2((concat(name(i),concat('+',SUBSTR(to_char(4),1)))),new_expression)='true'  then
              
-                expp1(concat(name(i),concat('+',SUBSTR(to_char(n),2)))) := Y(j);
+                new_expression(concat(name(i),concat('+',SUBSTR(to_char(n),2)))) := Y(j);
                 flag := 'true';
              
-              elsif ((n=-6) and flag = 'true' and (char = 'false') and checks_condition_2((concat(name(i),concat('+',SUBSTR(to_char(5),1)))),expp1)='true') or ((n=-6) and flag = 'true' and checks_condition_2((concat(name(i),concat('+',SUBSTR(to_char(4),1)))),expp1)='true'  and counter2flag ='true') then
+              elsif ((n=-6) and flag = 'true' and (char = 'false') and checks_condition_2((concat(name(i),concat('+',SUBSTR(to_char(5),1)))),new_expression)='true') or ((n=-6) and flag = 'true' and checks_condition_2((concat(name(i),concat('+',SUBSTR(to_char(4),1)))),new_expression)='true'  and counter2flag ='true') then
              
-                expp1(concat(name(i),concat('+',SUBSTR(to_char(n),2)))) := Y(j);
+                new_expression(concat(name(i),concat('+',SUBSTR(to_char(n),2)))) := Y(j);
                 flag := 'true';
              
-             elsif (n=-7) and flag = 'true' and (char = 'false') and checks_condition_2((concat(name(i),concat('+',SUBSTR(to_char(6),1)))),expp1)='true'  then
+             elsif (n=-7) and flag = 'true' and (char = 'false') and checks_condition_2((concat(name(i),concat('+',SUBSTR(to_char(6),1)))),new_expression)='true'  then
              
-                expp1(concat(name(i),concat('+',SUBSTR(to_char(n),2)))) := Y(j);
+                new_expression(concat(name(i),concat('+',SUBSTR(to_char(n),2)))) := Y(j);
                 flag := 'true';
               
-              elsif ((n=-8) and flag = 'true' and (char = 'false') and checks_condition_2((concat(name(i),concat('+',SUBSTR(to_char(7),1)))),expp1)='true') or ((n=-6) and flag = 'true' and checks_condition_2((concat(name(i),concat('+',SUBSTR(to_char(6),1)))),expp1)='true'  and counter2flag ='true') then
+              elsif ((n=-8) and flag = 'true' and (char = 'false') and checks_condition_2((concat(name(i),concat('+',SUBSTR(to_char(7),1)))),new_expression)='true') or ((n=-6) and flag = 'true' and checks_condition_2((concat(name(i),concat('+',SUBSTR(to_char(6),1)))),new_expression)='true'  and counter2flag ='true') then
              
-                expp1(concat(name(i),concat('+',SUBSTR(to_char(n),2)))) := Y(j);
+                new_expression(concat(name(i),concat('+',SUBSTR(to_char(n),2)))) := Y(j);
                 flag := 'true';
               
               elsif (n=1) and flag != 'false' and (char = 'false')  then
              
-                expp1(concat(name(i),concat('-',SUBSTR(to_char(n),1)))) := Y(j);
+                new_expression(concat(name(i),concat('-',SUBSTR(to_char(n),1)))) := Y(j);
                 flag := 'true';
-             elsif (n=2) and flag = 'true' and (char = 'false') and checks_condition_2((concat(name(i),concat('-',SUBSTR(to_char(1),1)))),expp1)='true' or ((n=2)  and flag != 'false' and (checks_condition_1(Y(j),X)='false') and counter2flag ='true' ) then
+             elsif (n=2) and flag = 'true' and (char = 'false') and checks_condition_2((concat(name(i),concat('-',SUBSTR(to_char(1),1)))),new_expression)='true' or ((n=2)  and flag != 'false' and (checks_condition_1(Y(j),X)='false') and counter2flag ='true' ) then
              
-                expp1(concat(name(i),concat('-',SUBSTR(to_char(n),1)))) := Y(j);
-                flag := 'true';
-             
-              elsif (n=3) and flag = 'true' and (char = 'false')and checks_condition_2((concat(name(i),concat('-',SUBSTR(to_char(2),1)))),expp1)='true' then
-             
-                expp1(concat(name(i),concat('-',SUBSTR(to_char(n),1)))) := Y(j);
+                new_expression(concat(name(i),concat('-',SUBSTR(to_char(n),1)))) := Y(j);
                 flag := 'true';
              
-              elsif (n=4) and flag = 'true' and (char = 'false') and checks_condition_2((concat(name(i),concat('-',SUBSTR(to_char(3),1)))),expp1)='true'  or ((n=4) and flag = 'true'  and checks_condition_2((concat(name(i),concat('-',SUBSTR(to_char(2),1)))),expp1)='true' and counter2flag ='true' ) then
+              elsif (n=3) and flag = 'true' and (char = 'false')and checks_condition_2((concat(name(i),concat('-',SUBSTR(to_char(2),1)))),new_expression)='true' then
              
-                expp1(concat(name(i),concat('-',SUBSTR(to_char(n),1)))) := Y(j);
+                new_expression(concat(name(i),concat('-',SUBSTR(to_char(n),1)))) := Y(j);
                 flag := 'true';
              
-              elsif (n=5) and  flag = 'true' and (char = 'false') and checks_condition_2((concat(name(i),concat('-',SUBSTR(to_char(4),1)))),expp1)='true' then
+              elsif (n=4) and flag = 'true' and (char = 'false') and checks_condition_2((concat(name(i),concat('-',SUBSTR(to_char(3),1)))),new_expression)='true'  or ((n=4) and flag = 'true'  and checks_condition_2((concat(name(i),concat('-',SUBSTR(to_char(2),1)))),new_expression)='true' and counter2flag ='true' ) then
              
-                expp1(concat(name(i),concat('-',SUBSTR(to_char(n),1)))) := Y(j);
+                new_expression(concat(name(i),concat('-',SUBSTR(to_char(n),1)))) := Y(j);
                 flag := 'true';
              
-             elsif (n=6) and flag = 'true' and (char = 'false') and checks_condition_2((concat(name(i),concat('-',SUBSTR(to_char(5),1)))),expp1)='true' or ((n=6) and flag = 'true' and checks_condition_2((concat(name(i),concat('-',SUBSTR(to_char(4),1)))),expp1)='true' and counter2flag ='true' ) then
+              elsif (n=5) and  flag = 'true' and (char = 'false') and checks_condition_2((concat(name(i),concat('-',SUBSTR(to_char(4),1)))),new_expression)='true' then
              
-                expp1(concat(name(i),concat('-',SUBSTR(to_char(n),1)))) := Y(j);
+                new_expression(concat(name(i),concat('-',SUBSTR(to_char(n),1)))) := Y(j);
                 flag := 'true';
              
-             elsif (n=7) and flag = 'true' and (char = 'false') and checks_condition_2((concat(name(i),concat('-',SUBSTR(to_char(6),1)))),expp1)='true' then
+             elsif (n=6) and flag = 'true' and (char = 'false') and checks_condition_2((concat(name(i),concat('-',SUBSTR(to_char(5),1)))),new_expression)='true' or ((n=6) and flag = 'true' and checks_condition_2((concat(name(i),concat('-',SUBSTR(to_char(4),1)))),new_expression)='true' and counter2flag ='true' ) then
              
-                 expp1(concat(name(i),concat('-',SUBSTR(to_char(n),1)))) := Y(j);
+                new_expression(concat(name(i),concat('-',SUBSTR(to_char(n),1)))) := Y(j);
+                flag := 'true';
+             
+             elsif (n=7) and flag = 'true' and (char = 'false') and checks_condition_2((concat(name(i),concat('-',SUBSTR(to_char(6),1)))),new_expression)='true' then
+             
+                 new_expression(concat(name(i),concat('-',SUBSTR(to_char(n),1)))) := Y(j);
                  flag := 'true';
                  
-             elsif (n=8) and flag = 'true' and (char = 'false') and checks_condition_2((concat(name(i),concat('-',SUBSTR(to_char(7),1)))),expp1)='true' or ((n=8) and flag = 'true' and checks_condition_2((concat(name(i),concat('-',SUBSTR(to_char(6),1)))),expp1)='true' and counter2flag ='true' )then
+             elsif (n=8) and flag = 'true' and (char = 'false') and checks_condition_2((concat(name(i),concat('-',SUBSTR(to_char(7),1)))),new_expression)='true' or ((n=8) and flag = 'true' and checks_condition_2((concat(name(i),concat('-',SUBSTR(to_char(6),1)))),new_expression)='true' and counter2flag ='true' )then
              
-                expp1(concat(name(i),concat('-',SUBSTR(to_char(n),1)))) := Y(j);
+                new_expression(concat(name(i),concat('-',SUBSTR(to_char(n),1)))) := Y(j);
                 flag := 'true';
              
-             elsif (n=9) and flag = 'true' and(char = 'false') and checks_condition_2((concat(name(i),concat('-',SUBSTR(to_char(8),1)))),expp1)='true' then
+             elsif (n=9) and flag = 'true' and(char = 'false') and checks_condition_2((concat(name(i),concat('-',SUBSTR(to_char(8),1)))),new_expression)='true' then
              
-                expp1(concat(name(i),concat('-',SUBSTR(to_char(n),1)))) := Y(j);
+                new_expression(concat(name(i),concat('-',SUBSTR(to_char(n),1)))) := Y(j);
                 flag := 'true';
              
              else
@@ -231,16 +231,8 @@ FUNCTION ladder(X IN labell,Y IN numarray)RETURN labell IS  expp1 labell; char V
           
         end loop inner_loop;
     end loop outer_loop;
-    
-    
-    
-   
-   
-        
-   -- DBMS_OUTPUT.PUT_LINE(char||pattern);
-   
-        
-    RETURN expp1;
+
+    RETURN new_expression;
              
                 
  
@@ -249,14 +241,14 @@ FUNCTION ladder(X IN labell,Y IN numarray)RETURN labell IS  expp1 labell; char V
  
     
 FUNCTION getPattern(X IN NUMBER)RETURN VARCHAR2 IS pattern VARCHAR2(30); tables num_table;    ------ function to return a pattern
-     nums2 numarray ;
-     nums3 numarray ;
+     new_number_array2 numarray ;
+     old_number_array numarray ;
      l  labell;
-     labels1 labell ;
-     labels labell ;
-     expp1 labell;
-     expr exp;
-     numss numarray;
+     pattern_label_new labell ;
+     pattern_label labell ;
+     new_expression labell;
+     expression exp;
+     new_number_array numarray;
      countt integer;
      char VARCHAR(200);
      similar labell;
@@ -266,14 +258,14 @@ FUNCTION getPattern(X IN NUMBER)RETURN VARCHAR2 IS pattern VARCHAR2(30); tables 
     specialpattern := 'false';
     char := to_char(X);                                            --------asigning a char of X to char
     n := LENGTH(char);   
-    numss := numarray();
+    new_number_array := numarray();
      
     
-    for i in 1 .. n LOOP                                             ---------------------adding indivisual char of char to numss array
-        IF  not numss.exists(i) then
+    for i in 1 .. n LOOP                                                             ---------------------adding indivisual char of char to new_number_array array
+        IF  not new_number_array.exists(i) then
         
-            numss.extend;
-            numss(i) := SUBSTR(char, i, 1);
+            new_number_array.extend;
+            new_number_array(i) := SUBSTR(char, i, 1);
         
         END IF;       
     END LOOP;
@@ -282,25 +274,25 @@ FUNCTION getPattern(X IN NUMBER)RETURN VARCHAR2 IS pattern VARCHAR2(30); tables 
     
     
     
-    nums3 := numss;                                 ---copying numss to nums3 for future used
-    nums2 := numss;
-    numss := numss MULTISET UNION DISTINCT nums2;   ----getting unique value of numss and assigning to numms again
-    --numss := delete_0(numss);
+    old_number_array := new_number_array;                                             ---copying new_number_array to old_number_array for future used
+    new_number_array2 := new_number_array;
+    new_number_array := new_number_array MULTISET UNION DISTINCT new_number_array2;   ----getting unique value of new_number_array and assigning to numms again
+    --new_number_array := delete_0(new_number_array);
     
     
     
     
-    for i in numss.FIRST .. numss.LAST LOOP
-     if numss(i)!='0' then
-        n := REGEXP_COUNT(char,numss(i));
+    for i in new_number_array.FIRST .. new_number_array.LAST LOOP
+     if new_number_array(i)!='0' then
+        n := REGEXP_COUNT(char,new_number_array(i));
         
-         tables(numss(i)) := n;
-         --DBMS_OUTPUT.PUT_LINE(numss(i)||'----------------------'||labels(numss(i)));
+         tables(new_number_array(i)) := n;
+        
          if (n>=2) then
-            labels(numss(i)) := 'multiple';
-           -- DBMS_OUTPUT.PUT_LINE(numss(i)||'----------------------'||labels(numss(i)));
+            pattern_label(new_number_array(i)) := 'multiple';
+          
         else
-            labels(numss(i)) := 'single';
+            pattern_label(new_number_array(i)) := 'single';
             
         end if;
        end if;
@@ -309,21 +301,21 @@ FUNCTION getPattern(X IN NUMBER)RETURN VARCHAR2 IS pattern VARCHAR2(30); tables 
     END LOOP;
     countt := 1;
     
-   for i in numss.FIRST .. numss.LAST loop
-    if numss(i)!='0' then
-        if (labels(numss(i)) = 'multiple') and specialpattern ='false' then 
-             expr(numss(i)) := name(countt);
-             similar(countt) := numss(i);
-             expp1(name(countt)) := numss(i);
+   for i in new_number_array.FIRST .. new_number_array.LAST loop
+    if new_number_array(i)!='0' then
+        if (pattern_label(new_number_array(i)) = 'multiple') and specialpattern ='false' then 
+             expression(new_number_array(i)) := name(countt);
+             similar(countt) := new_number_array(i);
+             new_expression(name(countt)) := new_number_array(i);
              countt := countt + 1;
              specialpattern := 'true';
              
-       elsif   (labels(numss(i)) = 'multiple') and specialpattern ='true' then     
-            expr(numss(i)) := 'o';
+       elsif   (pattern_label(new_number_array(i)) = 'multiple') and specialpattern ='true' then     
+            expression(new_number_array(i)) := 'o';
             specialpattern := 'true'; 
              
         else 
-            expr(numss(i)) := 'o';
+            expression(new_number_array(i)) := 'o';
             specialpattern := 'false';
     
         end if;
@@ -332,13 +324,13 @@ FUNCTION getPattern(X IN NUMBER)RETURN VARCHAR2 IS pattern VARCHAR2(30); tables 
      end if;
     end loop;
     if countt-1 >4 then
-        labels1 := ladder(similar,nums3);
+        pattern_label_new := ladder(similar,old_number_array);
     else 
 
-        for i in numss.first .. numss.last-1 loop
-         if numss(i)!='0' then
-            pattern:=condition_for_inc_1(numss(i),numss(i+1));
-            l(to_char(numss(i))):= pattern;
+        for i in new_number_array.first .. new_number_array.last-1 loop
+         if new_number_array(i)!='0' then
+            pattern:=condition_for_inc_1(new_number_array(i),new_number_array(i+1));
+            l(to_char(new_number_array(i))):= pattern;
          end if;
         end loop;
         
@@ -348,10 +340,10 @@ FUNCTION getPattern(X IN NUMBER)RETURN VARCHAR2 IS pattern VARCHAR2(30); tables 
     if checks_condition_1('true',L)='false' then
         counter2flag :='true';
     
-         for i in numss.first .. numss.last-1 loop
-          if numss(i)!='0' then
-            pattern:=condition_for_inc_2(numss(i),numss(i+1));
-            l(to_char(numss(i))):= pattern;
+         for i in new_number_array.first .. new_number_array.last-1 loop
+          if new_number_array(i)!='0' then
+            pattern:=condition_for_inc_2(new_number_array(i),new_number_array(i+1));
+            l(to_char(new_number_array(i))):= pattern;
            
           end if;
         end loop;
@@ -361,30 +353,30 @@ FUNCTION getPattern(X IN NUMBER)RETURN VARCHAR2 IS pattern VARCHAR2(30); tables 
     pattern := 'true';
 
    
-    for i in numss.first .. numss.last-1 loop
-        if numss(i)!='0' then
+    for i in new_number_array.first .. new_number_array.last-1 loop
+        if new_number_array(i)!='0' then
     
-       if l(numss(i)) = 'true' and pattern = 'true'   then
+       if l(new_number_array(i)) = 'true' and pattern = 'true'   then
 
            if countt>1 then
-                if checks_condition_3(numss(i),similar)= 'false' and checks_condition_3(numss(i)-1,similar)= 'false' and checks_condition_3(numss(i)+1,similar)= 'false'then
+                if checks_condition_3(new_number_array(i),similar)= 'false' and checks_condition_3(new_number_array(i)-1,similar)= 'false' and checks_condition_3(new_number_array(i)+1,similar)= 'false'then
   
-                      expr(numss(i)) := name(countt);
-                      similar(countt) := numss(i);
+                      expression(new_number_array(i)) := name(countt);
+                      similar(countt) := new_number_array(i);
                       countt := countt  + 1;
    
                 end if;
                pattern := 'false';
     
           else
-             expr(numss(i)) := name(countt);
-             similar(countt) := numss(i);
+             expression(new_number_array(i)) := name(countt);
+             similar(countt) := new_number_array(i);
              countt := countt  + 1;
              pattern := 'false';
          end if;
 
 
-     elsif l(numss(i)) = 'false' then
+     elsif l(new_number_array(i)) = 'false' then
      
         pattern := 'true';
         
@@ -394,29 +386,29 @@ FUNCTION getPattern(X IN NUMBER)RETURN VARCHAR2 IS pattern VARCHAR2(30); tables 
    
    if checks_condition_1('true',L)='true' then
    
-        labels1 := ladder(similar,numss);
+        pattern_label_new := ladder(similar,new_number_array);
         
    end if;
    
    pattern := '';
    
-   for i in nums3.First .. nums3.LAST loop
-    if nums3(i)!='0' then
-       if (expr(nums3(i)) != 'o') then
+   for i in old_number_array.First .. old_number_array.LAST loop
+    if old_number_array(i)!='0' then
+       if (expression(old_number_array(i)) != 'o') then
                 
-                 pattern := concat(pattern,expr(nums3(i)));
+                 pattern := concat(pattern,expression(old_number_array(i)));
      
       else
-          char := checks_condition_1(nums3(i),labels1);
+          char := checks_condition_1(old_number_array(i),pattern_label_new);
           if char = 'true' then
-                ii := labels1.first;
+                ii := pattern_label_new.first;
                 while (ii is not null) loop
-                     if ( labels1(ii) = nums3(i)) then
+                     if ( pattern_label_new(ii) = old_number_array(i)) then
 
                             pattern := concat(pattern,ii);
                              exit;
                      end if;
-                     ii := labels1.NEXT(ii);
+                     ii := pattern_label_new.NEXT(ii);
                 end loop;
         else 
             pattern := concat(pattern,'*');
@@ -672,11 +664,11 @@ FUNCTION getName(pattern IN VARCHAR2) RETURN VARCHAR2 IS name VARCHAR2(50);
 
 BEGIN 
    
-    for i in 76000000 .. 76111111   loop
+    for i in 76000000 .. 76001000   loop
         x :=i;
         pattern := getPattern(x); 
         pattern_name := getName(pattern);
-        INSERT INTO PATTERNS (numbers,pattern,name) VALUES (i,pattern,pattern_name);
-        --DBMS_OUTPUT.PUT_LINE(x||'----------------------'||pattern||'-----------'||pattern_name);
+        --INSERT INTO PATTERNS (numbers,pattern,name) VALUES (i,pattern,pattern_name);
+        DBMS_OUTPUT.PUT_LINE(x||'----------------------'||pattern||'-----------'||pattern_name);
    end loop;
 END; 
