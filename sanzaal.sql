@@ -27,19 +27,7 @@ DECLARE
        
 
 
-FUNCTION delete_0(names numarray) RETURN numarray is bool numarray;
 
-    BEGIN
-        bool := numarray();
-        for i in names.first .. names.last loop
-             bool.extend;
-             if names(i)!= '0' then
-                
-                bool(i):= names(i);
-            end if;
-        end loop;
-        return bool;
-    end;   
   
     
 FUNCTION condition_for_inc_2(X in VARCHAR2,Y IN VARCHAR2) RETURN VARCHAR2 is l VARCHAR2(20);
@@ -431,6 +419,12 @@ FUNCTION getName(pattern IN VARCHAR2) RETURN VARCHAR2 IS name VARCHAR2(50);
         ELSIF (REGEXP_LIKE(pattern, 'xx\-2x\-4x\-6x\-8')) THEN
             name := 'Additional Ladder by 2 dec';
         
+        ELSIF (REGEXP_LIKE(pattern, 'xx\+2x\+4x\+6')) THEN
+            name := 'Additional Ladder by 2 Inc';
+            
+        ELSIF (REGEXP_LIKE(pattern, 'xx\-2x\-4x\-6')) THEN
+            name := 'Additional Ladder by 2 dec';
+        
         ELSIF (REGEXP_LIKE(pattern, '\+7')) THEN
             name := 'Ladder of 8 inc';
         
@@ -472,6 +466,12 @@ FUNCTION getName(pattern IN VARCHAR2) RETURN VARCHAR2 IS name VARCHAR2(50);
         
         ELSIF (REGEXP_LIKE(pattern, '\-4')) THEN
             name := 'Ladder of 5 dec';
+            
+        ELSIF (REGEXP_LIKE(pattern, 'xxx\+1x\+1x\+2x\+2x\+3')) THEN
+            name := 'Ladder of double 4 steps inc';
+        
+        ELSIF (REGEXP_LIKE(pattern, 'xxx\-1x\-1x\-2x\-2x\-3')) THEN
+            name := 'Ladder of double 4 steps dec';
             
         ELSIF (REGEXP_LIKE(pattern, '\+3') and REGEXP_LIKE(pattern, '([xyz])\1\1\1')) THEN
             name := '4 consecutive and ladder of 4 inc';
@@ -516,7 +516,8 @@ FUNCTION getName(pattern IN VARCHAR2) RETURN VARCHAR2 IS name VARCHAR2(50);
         
         ELSIF (REGEXP_LIKE(pattern, '\-3')) THEN
             name := 'Ladder of 4 dec';
-            
+        
+           
         ELSIF (REGEXP_LIKE(pattern, 'xxx\+1x\+1x\+2x\+2')) THEN
             name := 'Ladder of double 3 steps inc';
         
@@ -643,9 +644,24 @@ FUNCTION getName(pattern IN VARCHAR2) RETURN VARCHAR2 IS name VARCHAR2(50);
             
         ELSIF (REGEXP_COUNT(pattern, 'x') = 4 and not (REGEXP_LIKE(pattern, 'x\+1') or REGEXP_LIKE(pattern, 'x\-1'))) THEN
             name := 'same 4 non adj';
+          
+        ELSIF (REGEXP_COUNT(pattern, '0') = 8) THEN 
+            name := '8 zeros';
             
-        ELSIF (REGEXP_LIKE(pattern, '000')) THEN 
-            name := 'triple zero';
+        ELSIF (REGEXP_COUNT(pattern, '0') = 7) THEN 
+            name := '7 zeros';
+        
+        ELSIF (REGEXP_COUNT(pattern, '0') = 6) THEN 
+            name := '6 zeros';
+            
+        ELSIF (REGEXP_COUNT(pattern, '0') = 5) THEN 
+            name := '5 zeros';
+            
+        ELSIF (REGEXP_COUNT(pattern, '0') = 4) THEN 
+            name := '4 zeros';
+            
+        ELSIF (REGEXP_COUNT(pattern, '0') = 3) THEN 
+            name := '3 zeros';
         
         ELSIF (REGEXP_LIKE(pattern, '\*0\*0\*0')) THEN
             name := 'Additional a0b0c0';
@@ -662,13 +678,15 @@ FUNCTION getName(pattern IN VARCHAR2) RETURN VARCHAR2 IS name VARCHAR2(50);
         RETURN name;
     END;
 
+
+
 BEGIN 
    
     for i in 76000000 .. 76001000   loop
         x :=i;
         pattern := getPattern(x); 
         pattern_name := getName(pattern);
-        INSERT INTO PATTERNS (numbers,pattern,name) VALUES (i,pattern,pattern_name);
-        --DBMS_OUTPUT.PUT_LINE(x||'----------------------'||pattern||'-----------'||pattern_name);
+        --INSERT INTO PATTERNS (numbers,pattern,name) VALUES (i,pattern,pattern_name);
+        DBMS_OUTPUT.PUT_LINE(x||'----------------------'||pattern||'-----------'||pattern_name);
    end loop;
 END; 
