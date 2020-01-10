@@ -686,7 +686,7 @@ BEGIN
         x :=i;
         pattern := getPattern(x); 
         pattern_name := getName(pattern);
-        --INSERT INTO PATTERNS (numbers,pattern,name) VALUES (i,pattern,pattern_name);
-        DBMS_OUTPUT.PUT_LINE(x||'----------------------'||pattern||'-----------'||pattern_name);
+        INSERT INTO PATTERNS (numbers,pattern,name) VALUES (i,pattern,pattern_name);
+        --DBMS_OUTPUT.PUT_LINE(x||'----------------------'||pattern||'-----------'||pattern_name);
    end loop;
 END; 
