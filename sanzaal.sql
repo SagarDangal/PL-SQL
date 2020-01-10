@@ -649,8 +649,11 @@ FUNCTION getName(pattern IN VARCHAR2) RETURN VARCHAR2 IS name VARCHAR2(50);
         ELSIF (REGEXP_COUNT(pattern, 'x') = 5) THEN
             name := 'same 5 non adj';
             
-        ELSIF (REGEXP_COUNT(pattern, 'x') = 4) THEN
+        ELSIF (REGEXP_COUNT(pattern, 'x') = 4 and not (REGEXP_LIKE(pattern, 'x\+1') or REGEXP_LIKE(pattern, 'x\-1'))) THEN
             name := 'same 4 non adj';
+            
+        ELSIF (REGEXP_LIKE(pattern, '000')) THEN 
+            name := 'triple zero';
         
         ELSIF (REGEXP_LIKE(pattern, '\*0\*0\*0')) THEN
             name := 'Additional a0b0c0';
@@ -662,11 +665,11 @@ FUNCTION getName(pattern IN VARCHAR2) RETURN VARCHAR2 IS name VARCHAR2(50);
             name := 'double 00 end';
           
         ELSE
-            name := '';
+            name := 'bad';
         END IF;
         RETURN name;
-    END;  
-    
+    END;
+
 BEGIN 
    
     for i in 76000000 .. 76111111   loop
