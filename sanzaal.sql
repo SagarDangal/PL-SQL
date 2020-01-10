@@ -320,13 +320,15 @@ FUNCTION getPattern(X IN NUMBER)RETURN VARCHAR2 IS pattern VARCHAR2(30); tables 
              
        elsif   (labels(numss(i)) = 'multiple') and specialpattern ='true' then     
             expr(numss(i)) := 'o';
-             
+            specialpattern := 'true'; 
              
         else 
             expr(numss(i)) := 'o';
             specialpattern := 'false';
     
         end if;
+        else
+        specialpattern := 'false';
      end if;
     end loop;
     if countt-1 >4 then
@@ -671,7 +673,7 @@ BEGIN
         x :=i;
         pattern := getPattern(x); 
         pattern_name := getName(pattern);
-      --  INSERT INTO PATTERNS (numbers,pattern) VALUES (i,pattern);
+      --INSERT INTO PATTERNS (numbers,pattern) VALUES (i,pattern);
         DBMS_OUTPUT.PUT_LINE(x||'----------------------'||pattern||'-----------'||pattern_name);
    end loop;
 END; 
