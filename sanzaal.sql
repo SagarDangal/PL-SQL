@@ -256,12 +256,12 @@ FUNCTION getPattern(X IN NUMBER)RETURN VARCHAR2 IS pattern VARCHAR2(30); tables 
   BEGIN
     bestpattern := 'false';
     specialpattern := 'false';
-    char := to_char(X);                                            --------asigning a char of X to char
+    char := to_char(X);                                                                                                         ----asigning a char of X to char
     n := LENGTH(char);   
     new_number_array := numarray();
      
     
-    for i in 1 .. n LOOP                                                             ---------------------adding indivisual char of char to new_number_array array
+    for i in 1 .. n LOOP                                                                                                        ----adding indivisual char of char to new_number_array array
         IF  not new_number_array.exists(i) then
         
             new_number_array.extend;
@@ -274,9 +274,9 @@ FUNCTION getPattern(X IN NUMBER)RETURN VARCHAR2 IS pattern VARCHAR2(30); tables 
     
     
     
-    old_number_array := new_number_array;                                             ---copying new_number_array to old_number_array for future used
+    old_number_array := new_number_array;                                                                                       ---copying new_number_array to old_number_array for future used
     new_number_array2 := new_number_array;
-    new_number_array := new_number_array MULTISET UNION DISTINCT new_number_array2;   ----getting unique value of new_number_array and assigning to numms again
+    new_number_array := new_number_array MULTISET UNION DISTINCT new_number_array2;                                             ----getting unique value of new_number_array and assigning to numms again
     --new_number_array := delete_0(new_number_array);
     
     
@@ -668,7 +668,7 @@ BEGIN
         x :=i;
         pattern := getPattern(x); 
         pattern_name := getName(pattern);
-        --INSERT INTO PATTERNS (numbers,pattern,name) VALUES (i,pattern,pattern_name);
-        DBMS_OUTPUT.PUT_LINE(x||'----------------------'||pattern||'-----------'||pattern_name);
+        INSERT INTO PATTERNS (numbers,pattern,name) VALUES (i,pattern,pattern_name);
+        --DBMS_OUTPUT.PUT_LINE(x||'----------------------'||pattern||'-----------'||pattern_name);
    end loop;
 END; 
