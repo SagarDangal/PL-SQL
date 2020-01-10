@@ -669,11 +669,11 @@ FUNCTION getName(pattern IN VARCHAR2) RETURN VARCHAR2 IS name VARCHAR2(50);
     
 BEGIN 
    
-    for i in 76000000 .. 76001000   loop
+    for i in 76000000 .. 76111111   loop
         x :=i;
         pattern := getPattern(x); 
         pattern_name := getName(pattern);
-      --INSERT INTO PATTERNS (numbers,pattern) VALUES (i,pattern);
-        DBMS_OUTPUT.PUT_LINE(x||'----------------------'||pattern||'-----------'||pattern_name);
+        INSERT INTO PATTERNS (numbers,pattern,name) VALUES (i,pattern,pattern_name);
+        --DBMS_OUTPUT.PUT_LINE(x||'----------------------'||pattern||'-----------'||pattern_name);
    end loop;
 END; 
