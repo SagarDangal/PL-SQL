@@ -236,7 +236,7 @@ FUNCTION ladder(X IN labell,Y IN numarray)RETURN labell IS  new_expression label
  
  
     
-FUNCTION getPattern(X IN NUMBER)RETURN VARCHAR2 IS pattern VARCHAR2(30); tables num_table;    ------ function to return a pattern
+PROCEDURE getPattern(X IN NUMBER,pattern OUT VARCHAR2 ) IS tables num_table;    ------ function to return a pattern
      new_number_array2 numarray ;
      old_number_array numarray ;
      l  labell;
@@ -279,8 +279,11 @@ FUNCTION getPattern(X IN NUMBER)RETURN VARCHAR2 IS pattern VARCHAR2(30); tables 
     
     
     for i in new_number_array.FIRST .. new_number_array.LAST LOOP
-     if new_number_array(i)!='0' then
+     
         n := REGEXP_COUNT(char,new_number_array(i));
+        if n>3 then
+            bestpattern := 'true';
+        end if;
         
          tables(new_number_array(i)) := n;
         
@@ -291,14 +294,14 @@ FUNCTION getPattern(X IN NUMBER)RETURN VARCHAR2 IS pattern VARCHAR2(30); tables 
             pattern_label(new_number_array(i)) := 'single';
             
         end if;
-       end if;
+       
         
         
     END LOOP;
     countt := 1;
     
    for i in new_number_array.FIRST .. new_number_array.LAST loop
-    if new_number_array(i)!='0' then
+    
         if (pattern_label(new_number_array(i)) = 'multiple')  then 
              expression(new_number_array(i)) := name(countt);
              similar(countt) := new_number_array(i);
@@ -315,17 +318,17 @@ FUNCTION getPattern(X IN NUMBER)RETURN VARCHAR2 IS pattern VARCHAR2(30); tables 
         end if;
         
         
-     end if;
+    
     end loop;
-    if countt-1 >4 then
+    if countt-1 >4 or bestpattern= 'true' then
         pattern_label_new := ladder(similar,old_number_array);
     else 
 
         for i in new_number_array.first .. new_number_array.last-1 loop
-         if new_number_array(i)!='0' then
+        
             pattern:=condition_for_inc_1(new_number_array(i),new_number_array(i+1));
             l(to_char(new_number_array(i))):= pattern;
-         end if;
+         
         end loop;
         
     end if;
@@ -335,11 +338,11 @@ FUNCTION getPattern(X IN NUMBER)RETURN VARCHAR2 IS pattern VARCHAR2(30); tables 
         counter2flag :='true';
     
          for i in new_number_array.first .. new_number_array.last-1 loop
-          if new_number_array(i)!='0' then
+          
             pattern:=condition_for_inc_2(new_number_array(i),new_number_array(i+1));
             l(to_char(new_number_array(i))):= pattern;
            
-          end if;
+         
         end loop;
 
    end if;
@@ -348,7 +351,7 @@ FUNCTION getPattern(X IN NUMBER)RETURN VARCHAR2 IS pattern VARCHAR2(30); tables 
 
    
     for i in new_number_array.first .. new_number_array.last-1 loop
-        if new_number_array(i)!='0' then
+       
     
        if l(new_number_array(i)) = 'true' and pattern = 'true'   then
 
@@ -375,7 +378,7 @@ FUNCTION getPattern(X IN NUMBER)RETURN VARCHAR2 IS pattern VARCHAR2(30); tables 
         pattern := 'true';
         
      end if;
-    end if;
+    
    end loop;
    
    if checks_condition_1('true',L)='true' then
@@ -387,7 +390,7 @@ FUNCTION getPattern(X IN NUMBER)RETURN VARCHAR2 IS pattern VARCHAR2(30); tables 
    pattern := '';
    
    for i in old_number_array.First .. old_number_array.LAST loop
-    if old_number_array(i)!='0' then
+   
        if (expression(old_number_array(i)) != 'o') then
                 
                  pattern := concat(pattern,expression(old_number_array(i)));
@@ -409,15 +412,13 @@ FUNCTION getPattern(X IN NUMBER)RETURN VARCHAR2 IS pattern VARCHAR2(30); tables 
         end if;
     
       end if;
-      else
-      pattern := concat(pattern,'0');
-    end if;
+     
     end loop;
-    RETURN pattern;
+    --RETURN pattern;
 
   END;  
     
-FUNCTION getName(pattern IN VARCHAR2) RETURN VARCHAR2 IS name VARCHAR2(50);
+PROCEDURE getName(pattern IN VARCHAR2,name OUT VARCHAR2) IS 
     BEGIN
         IF (REGEXP_LIKE(pattern, 'xx\+2x\+4x\+6x\+8')) THEN
             name := 'Additional Ladder by 2 Inc';
@@ -681,18 +682,17 @@ FUNCTION getName(pattern IN VARCHAR2) RETURN VARCHAR2 IS name VARCHAR2(50);
         ELSE
             name := 'bad';
         END IF;
-        RETURN name;
+        
     END;
 
 
 
 BEGIN 
    
-   for i in 76000000 .. 76001000   loop
-        x :=i;
-        pattern := getPattern(x); 
-        pattern_name := getName(pattern);
-       INSERT INTO PATTERNS (numbers,pattern,name) VALUES (i,pattern,pattern_name);
-        --DBMS_OUTPUT.PUT_LINE(x||'----------------------'||pattern||'-----------'||pattern_name);
-  end loop;
+        x := 760000;
+        getPattern(x ,pattern); 
+        getName(pattern,pattern_name);
+      -- INSERT INTO PATTERNS (numbers,pattern,name) VALUES (i,pattern,pattern_name);
+        DBMS_OUTPUT.PUT_LINE(x||'----------------------'||pattern||'-----------'||pattern_name);
+
 END; 
