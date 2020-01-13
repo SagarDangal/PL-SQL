@@ -1,11 +1,7 @@
-SET SERVEROUTPUT ON;
 
 
-
-
-DECLARE
-    
-    TYPE num_table IS TABLE OF VARCHAR(20) INDEX BY VARCHAR(20);                                    -----index is indivisual number like index are 1,2,3,4 of 11234 contais ta count of number like  t(1) = 2
+CREATE OR REPLACE PROCEDURE getPattern(X IN NUMBER,pattern OUT VARCHAR2 ) IS
+     TYPE num_table IS TABLE OF VARCHAR(20) INDEX BY VARCHAR(20);                                    -----index is indivisual number like index are 1,2,3,4 of 11234 contais ta count of number like  t(1) = 2
     
     TYPE labell IS TABLE Of VARCHAR(200) INDEX BY VARCHAR(200); 
 
@@ -14,39 +10,25 @@ DECLARE
     type namesarray IS VARRAY(5) OF VARCHAR2(10); 
     name namesarray := namesarray('x','y','z','w'); 
 
-    type numarray IS TABLE OF VARCHAR(200);                                                         --numarray contain indivisual digit of x like('1','2','3','4','5') of 12345                                                                              ----- declaring a character (it is latter used to kept char of x
-
-    pattern VARCHAR(300);
-    x NUMBER(10) ;  
-    ii VARCHAR(200);
+    type numarray IS TABLE OF VARCHAR(200);  
+    tables num_table;             
+     new_number_array2 numarray ;
+     old_number_array numarray ;
+     l  labell;
+     pattern_label_new labell ;
+     pattern_label labell ;
+     new_expression labell;
+     expression exp;
+     new_number_array numarray;
+     countt integer;
+     char VARCHAR(200);
+     similar labell;
+     n NUMBER(10); 
+     ii VARCHAR(200);
     ii2 VARCHAR(200);
     counter2flag VARCHAR2(20);
     bestpattern  VARCHAR2(20);
     specialpattern VARCHAR2(20);
-    pattern_name VARCHAR2(50);
-       
-
-
-
-PROCEDURE sorting(X IN numarray)IS Y labell;
-    BEGIN
-    ii := X.first;
-    
-    for i in X.first .. X.last loop
-    ii := i;
-    while (ii is not null ) loop
-    
-    ii2 :=  X.next(ii);
-    
-    if ii2 is not null then
-    if X(ii)<X(ii2) then
-    DBMS_OUTPUT.PUT_LINE(ii);
-    end if;
-    end if;
-    ii := ii2;
-    end loop;
-    end loop;
-    end;
     
 FUNCTION condition_for_inc_2(X in VARCHAR2,Y IN VARCHAR2) RETURN VARCHAR2 is l VARCHAR2(20);
  
@@ -252,21 +234,6 @@ FUNCTION ladder(X IN labell,Y IN numarray)RETURN labell IS  new_expression label
  
   END;
  
- 
-    
-PROCEDURE getPattern(X IN NUMBER,pattern OUT VARCHAR2 ) IS tables num_table;    ------ function to return a pattern
-     new_number_array2 numarray ;
-     old_number_array numarray ;
-     l  labell;
-     pattern_label_new labell ;
-     pattern_label labell ;
-     new_expression labell;
-     expression exp;
-     new_number_array numarray;
-     countt integer;
-     char VARCHAR(200);
-     similar labell;
-     n NUMBER(10); 
   BEGIN
     bestpattern := 'false';
     specialpattern := 'false';
@@ -285,15 +252,11 @@ PROCEDURE getPattern(X IN NUMBER,pattern OUT VARCHAR2 ) IS tables num_table;    
     END LOOP;
     
     
-    
-    
-    
     old_number_array := new_number_array;                                                                                       ---copying new_number_array to old_number_array for future used
     new_number_array2 := new_number_array;
     new_number_array := new_number_array MULTISET UNION DISTINCT new_number_array2;                                             ----getting unique value of new_number_array and assigning to numms again
-    --new_number_array := delete_0(new_number_array);
     
-    sorting(new_number_array);
+    
     
     
     for i in new_number_array.FIRST .. new_number_array.LAST LOOP
@@ -436,281 +399,3 @@ PROCEDURE getPattern(X IN NUMBER,pattern OUT VARCHAR2 ) IS tables num_table;    
 
   END;  
     
-PROCEDURE getName(pattern IN VARCHAR2,name OUT VARCHAR2) IS 
-    BEGIN
-        IF (REGEXP_LIKE(pattern, 'xx\+2x\+4x\+6x\+8')) THEN
-            name := 'Additional Ladder by 2 Inc';
-            
-        ELSIF (REGEXP_LIKE(pattern, 'xx\-2x\-4x\-6x\-8')) THEN
-            name := 'Additional Ladder by 2 dec';
-        
-        ELSIF (REGEXP_LIKE(pattern, 'xx\+2x\+4x\+6')) THEN
-            name := 'Additional Ladder by 2 Inc';
-            
-        ELSIF (REGEXP_LIKE(pattern, 'xx\-2x\-4x\-6')) THEN
-            name := 'Additional Ladder by 2 dec';
-        
-        ELSIF (REGEXP_LIKE(pattern, '\+7')) THEN
-            name := 'Ladder of 8 inc';
-        
-        ELSIF (REGEXP_LIKE(pattern, '\-7')) THEN
-            name := 'Ladder of 8 dec';
-            
-        ELSIF (REGEXP_LIKE(pattern, '\+6')) THEN
-            name := 'Ladder of 7 inc';
-        
-        ELSIF (REGEXP_LIKE(pattern, '\-6')) THEN
-            name := 'Ladder of 7 dec';
-        
-        ELSIF (REGEXP_LIKE(pattern, '\+5') and REGEXP_LIKE(pattern, '([xyz])\1')) THEN
-            name := '2 consecutive and ladder of 6 inc';
-            
-        ELSIF (REGEXP_LIKE(pattern, '\-5') and REGEXP_LIKE(pattern, '([xyz])\1')) THEN
-            name := '2 consecutive and ladder of 6 dec';
-        
-        ELSIF (REGEXP_LIKE(pattern, '\+5')) THEN
-            name := 'Ladder of 6 inc';
-        
-        ELSIF (REGEXP_LIKE(pattern, '\-5')) THEN
-            name := 'Ladder of 6 dec';
-        
-        ELSIF (REGEXP_LIKE(pattern, '\+4') and REGEXP_LIKE(pattern, '([xyz])\1\1\1')) THEN
-            name := '4 consecutive and ladder of 5 inc';
-            
-        ELSIF (REGEXP_LIKE(pattern, '\-4') and REGEXP_LIKE(pattern, '([xyz])\1\1\1')) THEN
-            name := '4 consecutive and ladder of 5 dec';
-            
-        ELSIF (REGEXP_LIKE(pattern, '\+4') and REGEXP_LIKE(pattern, '([xyz])\1\1')) THEN
-            name := '3 consecutive and ladder of 5 inc';
-            
-        ELSIF (REGEXP_LIKE(pattern, '\+4') and REGEXP_LIKE(pattern, '([xyz])\1\1')) THEN
-            name := '3 consecutive and ladder of 5 dec';
-        
-        ELSIF (REGEXP_LIKE(pattern, '\+4')) THEN
-            name := 'Ladder of 5 inc';
-        
-        ELSIF (REGEXP_LIKE(pattern, '\-4')) THEN
-            name := 'Ladder of 5 dec';
-            
-        ELSIF (REGEXP_LIKE(pattern, 'xxx\+1x\+1x\+2x\+2x\+3')) THEN
-            name := 'Ladder of double 4 steps inc';
-        
-        ELSIF (REGEXP_LIKE(pattern, 'xxx\-1x\-1x\-2x\-2x\-3')) THEN
-            name := 'Ladder of double 4 steps dec';
-            
-        ELSIF (REGEXP_LIKE(pattern, '\+3') and REGEXP_LIKE(pattern, '([xyz])\1\1\1')) THEN
-            name := '4 consecutive and ladder of 4 inc';
-       
-       ELSIF (REGEXP_LIKE(pattern, '\-3') and REGEXP_LIKE(pattern, '([xyz])\1\1\1')) THEN
-            name := '4 consecutive and ladder of 4 dec';
-        
-        ELSIF (REGEXP_LIKE(pattern, '\+3') and REGEXP_LIKE(pattern, '([xyz])\1\1')) THEN
-            name := '3 consecutive and ladder of 4 inc';
-            
-        ELSIF (REGEXP_LIKE(pattern, '\-3') and REGEXP_LIKE(pattern, '([xyz])\1\1')) THEN
-            name := '3 consecutive and ladder of 4 dec';
-            
-            
-        ELSIF (REGEXP_COUNT(pattern, '\+3') = 2) THEN
-            name := 'Ladder of 4 4 inc inc';
-            
-        ELSIF (REGEXP_COUNT(pattern, '\-3') = 2) THEN
-            name := 'Ladder of 4 4 dec dec';
-            
-        ELSIF (REGEXP_LIKE(pattern, '\+3') and REGEXP_LIKE(pattern, '\-3')) THEN
-            name := 'Ladder of 4 4 inc dec';
-            
-        ELSIF ((REGEXP_LIKE(pattern, 'x\+3') and REGEXP_LIKE(pattern, 'y\+2'))
-        or (REGEXP_LIKE(pattern, 'y\+3') and REGEXP_LIKE(pattern, 'x\+2'))) THEN
-            name := 'Ladder of 4 3 inc inc';
-            
-        ELSIF ((REGEXP_LIKE(pattern, 'x\-3') and REGEXP_LIKE(pattern, 'y\+2'))
-        or (REGEXP_LIKE(pattern, 'y\-3') and REGEXP_LIKE(pattern, 'x\+2'))) THEN
-            name := 'Ladder of 4 3 dec inc';
-            
-        ELSIF ((REGEXP_LIKE(pattern, 'x\+3') and REGEXP_LIKE(pattern, 'y\-2'))
-        or (REGEXP_LIKE(pattern, 'y\+3') and REGEXP_LIKE(pattern, 'x\-2'))) THEN
-            name := 'Ladder of 4 3 inc dec';
-            
-        ELSIF ((REGEXP_LIKE(pattern, 'x\-3') and REGEXP_LIKE(pattern, 'y\-2'))
-        or (REGEXP_LIKE(pattern, 'y\-3') and REGEXP_LIKE(pattern, 'x\-2'))) THEN
-            name := 'Ladder of 4 3 dec dec';
-        
-        ELSIF (REGEXP_LIKE(pattern, '\+3')) THEN
-            name := 'Ladder of 4 inc';
-        
-        ELSIF (REGEXP_LIKE(pattern, '\-3')) THEN
-            name := 'Ladder of 4 dec';
-        
-           
-        ELSIF (REGEXP_LIKE(pattern, 'xxx\+1x\+1x\+2x\+2')) THEN
-            name := 'Ladder of double 3 steps inc';
-        
-        ELSIF (REGEXP_LIKE(pattern, 'xxx\-1x\-1x\-2x\-2')) THEN
-            name := 'Ladder of double 3 steps dec';
-        
-        ELSIF (REGEXP_COUNT(pattern, '\+2') = 2) THEN
-            name := 'Ladder of 3 3 inc inc';
-            
-        ELSIF (REGEXP_COUNT(pattern, '\-2') = 2) THEN
-            name := 'Ladder of 3 3 dec dec';
-            
-        ELSIF (REGEXP_LIKE(pattern, '\+2') and REGEXP_LIKE(pattern, '\-2')) THEN
-            name := 'Ladder of 3 3 inc dec';
-            
-        ELSIF (REGEXP_LIKE(pattern, '\-2') and REGEXP_LIKE(pattern, '([xyz])\1\1\1')) THEN
-            name := '4 consecutive and ladder of 3 dec';
-        
-        ELSIF (REGEXP_LIKE(pattern, '\+2') and REGEXP_LIKE(pattern, '([xyz])\1\1\1')) THEN
-            name := '4 consecutive and ladder of 3 inc';
-        
-        ELSIF (REGEXP_COUNT(pattern, 'x') = 8) THEN
-            name := 'same 8';
-            
-        ELSIF (REGEXP_COUNT(pattern, '([xyz])\1\1\1') = 2) THEN
-            name := 'same 4 double adj';
-            
-        ELSIF (REGEXP_COUNT(pattern, '([xyz])\1\1\1\1\1\1') = 1) THEN
-            name := 'same 7 adj';
-        
-        ELSIF (REGEXP_COUNT(pattern, 'x') = 7) THEN
-            name := 'same 7 non adj';
-            
-        ELSIF (REGEXP_COUNT(pattern, '([xyz])\1\1') = 2 and REGEXP_COUNT(pattern, '([xyz])\1') = 4 
-                and (REGEXP_COUNT(pattern, 'x') = 6) or (REGEXP_COUNT(pattern, 'y') = 6)
-                or (REGEXP_COUNT(pattern, 'z') = 6)) THEN
-            name := '2 triplets 1 pair same number';
-            
-        ELSIF (REGEXP_COUNT(pattern, '([xyz])\1\1\1\1\1') = 1) THEN
-            name := 'same 6 adj';
-            
-        ELSIF (REGEXP_LIKE(pattern, '([xyz])\1\1\1\1') AND REGEXP_COUNT(pattern, '([xyz])\1') = 3) THEN
-            name := 'Same 5 and one pair';
-            
-        ELSIF (REGEXP_COUNT(pattern, '([xyz])\1\1') = 1 and REGEXP_COUNT(pattern, '([xyz])\1') = 3 
-                and ((REGEXP_COUNT(pattern, 'x') = 5) or (REGEXP_COUNT(pattern, 'y') = 5)
-                or (REGEXP_COUNT(pattern, 'z') = 5))) THEN
-            name := '1 triplet 2 pairs same number';
-            
-        ELSIF (REGEXP_LIKE(pattern,'([xyz])\1\1\1\1') AND REGEXP_COUNT(pattern, '([xyz])\1\1') = 2) THEN
-            name := 'Same 5 and one triple';
-        
-        ELSIF (REGEXP_COUNT(pattern, '([xyz])\1\1\1\1') = 1) THEN
-            name := 'same 5 adj';
-        
-        ELSIF (REGEXP_LIKE(pattern, '([xyz])\1\1\1') and REGEXP_COUNT(pattern, '([xyz])\1\1') = 2) THEN
-            name := '4 plus 3';
-            
-        ELSIF (REGEXP_COUNT(pattern, '([xyz])\1\1\1') = 1) THEN
-            name := 'same 4 adj';  
-        
-        ELSIF (REGEXP_COUNT(pattern, '([xyz])\1\1') = 2 and REGEXP_COUNT(pattern, '([xyz])\1') = 3) THEN
-            name := '2 triplets 1 pair';
-            
-        ELSIF (REGEXP_COUNT(pattern, '([xyz])\1\1') = 2) THEN
-            name := '2 triplets';
-            
-        ELSIF (REGEXP_COUNT(pattern, '([xyz])\1\1') = 1 and REGEXP_COUNT(pattern, '([xyz])\1') = 3) THEN
-            name := '1 triplet and 2 pairs';
-        
-        ELSIF (REGEXP_COUNT(pattern, 'x') = 6) THEN
-            name := 'same 6 non adj';
-        
-        ELSIF (REGEXP_COUNT(pattern, '([xyz])\1') = 4) THEN
-            name :=  '4 doubles including same number';
-            
-        ELSIF (REGEXP_COUNT(pattern, '([xyzw]\1)') = 4) THEN
-            name := '4 doubles';
-            
-        ELSIF (REGEXP_COUNT(pattern, '([xy])\1') = 3) THEN
-            name :=  '3 doubles including same number';
-        
-        ELSIF (REGEXP_COUNT(pattern, '([xyz])\1') = 3) THEN
-            name :=  '3 doubles';
-            
-        ELSIF (REGEXP_COUNT(pattern, '([xyz])\1') = 2) THEN
-            name :=  '2 pairs any where';
-            
-        ELSIF (REGEXP_LIKE(pattern, '([xyz])\1\1') and REGEXP_LIKE(pattern, 'y0y0')) THEN 
-            name := 'triplet x0x0';
-            
-        ELSIF (REGEXP_COUNT(pattern, '([xyz])\1\1') = 1) THEN
-            name := '1 triplet';
-        
-        ELSIF (REGEXP_LIKE(pattern, 'xyzwwzyx')) THEN
-            name := 'mirror 8';
-            
-        ELSIF (REGEXP_LIKE(pattern, 'xyzwzyx')) THEN
-            name := 'mirror 7';
-        
-        ELSIF (REGEXP_LIKE(pattern, 'xyzzyx')) THEN
-            name := 'abccba';
-        
-        ELSIF (REGEXP_LIKE(pattern, 'xyxzxz')) THEN
-            name := 'abacac';
-            
-        ELSIF (REGEXP_LIKE(pattern, 'xzxyxy')) THEN
-            name := 'acabab';
-            
-        ELSIF (REGEXP_COUNT(pattern, '(xyzw)') = 2) THEN
-            name := 'abcd abcd';
-        
-        ELSIF (REGEXP_COUNT(pattern, '(xyz)') = 2) THEN
-            name := 'abc abc';
-            
-        ELSIF (REGEXP_COUNT(pattern, '(xyy)') = 2) THEN
-            name := 'abb abb';
-            
-        ELSIF (REGEXP_COUNT(pattern, '(xy)') = 3) THEN
-            name := 'ababab anywhere';
-            
-        ELSIF (REGEXP_COUNT(pattern, 'x') = 5) THEN
-            name := 'same 5 non adj';
-            
-        ELSIF (REGEXP_COUNT(pattern, 'x') = 4 and not (REGEXP_LIKE(pattern, 'x\+1') or REGEXP_LIKE(pattern, 'x\-1'))) THEN
-            name := 'same 4 non adj';
-          
-        ELSIF (REGEXP_COUNT(pattern, '0') = 8) THEN 
-            name := '8 zeros';
-            
-        ELSIF (REGEXP_COUNT(pattern, '0') = 7) THEN 
-            name := '7 zeros';
-        
-        ELSIF (REGEXP_COUNT(pattern, '0') = 6) THEN 
-            name := '6 zeros';
-            
-        ELSIF (REGEXP_COUNT(pattern, '0') = 5) THEN 
-            name := '5 zeros';
-            
-        ELSIF (REGEXP_COUNT(pattern, '0') = 4) THEN 
-            name := '4 zeros';
-            
-        ELSIF (REGEXP_COUNT(pattern, '0') = 3) THEN 
-            name := '3 zeros';
-        
-        ELSIF (REGEXP_LIKE(pattern, '\*0\*0\*0')) THEN
-            name := 'Additional a0b0c0';
-            
-        ELSIF (REGEXP_LIKE(pattern, 'x0x0$')) THEN
-            name := 'end with x0x0';
-            
-        ELSIF (REGEXP_LIKE(pattern, '00$')) THEN
-            name := 'double 00 end';
-          
-        ELSE
-            name := 'bad';
-        END IF;
-        
-    END;
-
-
-
-BEGIN 
-   
-        x := 311;
-        getPattern(x ,pattern); 
-        getName(pattern,pattern_name);
-      -- INSERT INTO PATTERNS (numbers,pattern,name) VALUES (i,pattern,pattern_name);
-        DBMS_OUTPUT.PUT_LINE(x||'----------------------'||pattern||'-----------'||pattern_name);
-
-END; 
