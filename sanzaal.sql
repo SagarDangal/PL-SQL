@@ -1,6 +1,6 @@
 
 
-CREATE OR REPLACE PROCEDURE getPattern(X IN NUMBER,pattern OUT VARCHAR2 ) IS
+CREATE OR REPLACE PROCEDURE getPattern(X IN NUMBER,pattern OUT VARCHAR2 ) AS
      TYPE num_table IS TABLE OF VARCHAR(20) INDEX BY VARCHAR(20);                                    -----index is indivisual number like index are 1,2,3,4 of 11234 contais ta count of number like  t(1) = 2
     
     TYPE labell IS TABLE Of VARCHAR(200) INDEX BY VARCHAR(200); 
