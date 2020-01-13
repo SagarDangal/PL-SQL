@@ -28,7 +28,25 @@ DECLARE
 
 
 
-  
+PROCEDURE sorting(X IN numarray)IS Y labell;
+    BEGIN
+    ii := X.first;
+    
+    for i in X.first .. X.last loop
+    ii := i;
+    while (ii is not null ) loop
+    
+    ii2 :=  X.next(ii);
+    
+    if ii2 is not null then
+    if X(ii)<X(ii2) then
+    DBMS_OUTPUT.PUT_LINE(ii);
+    end if;
+    end if;
+    ii := ii2;
+    end loop;
+    end loop;
+    end;
     
 FUNCTION condition_for_inc_2(X in VARCHAR2,Y IN VARCHAR2) RETURN VARCHAR2 is l VARCHAR2(20);
  
@@ -275,7 +293,7 @@ PROCEDURE getPattern(X IN NUMBER,pattern OUT VARCHAR2 ) IS tables num_table;    
     new_number_array := new_number_array MULTISET UNION DISTINCT new_number_array2;                                             ----getting unique value of new_number_array and assigning to numms again
     --new_number_array := delete_0(new_number_array);
     
-    
+    sorting(new_number_array);
     
     
     for i in new_number_array.FIRST .. new_number_array.LAST LOOP
@@ -356,7 +374,7 @@ PROCEDURE getPattern(X IN NUMBER,pattern OUT VARCHAR2 ) IS tables num_table;    
        if l(new_number_array(i)) = 'true' and pattern = 'true'   then
 
            if countt>1 then
-                if checks_condition_3(new_number_array(i),similar)= 'false' and checks_condition_3(new_number_array(i)-1,similar)= 'false' and checks_condition_3(new_number_array(i)+1,similar)= 'false'then
+                if checks_condition_3(new_number_array(i),similar)= 'false' and checks_condition_3(new_number_array(i)-1,similar)= 'false' and checks_condition_3(new_number_array(i)+1,similar)= 'false' then
   
                       expression(new_number_array(i)) := name(countt);
                       similar(countt) := new_number_array(i);
@@ -689,7 +707,7 @@ PROCEDURE getName(pattern IN VARCHAR2,name OUT VARCHAR2) IS
 
 BEGIN 
    
-        x := 760000;
+        x := 311;
         getPattern(x ,pattern); 
         getName(pattern,pattern_name);
       -- INSERT INTO PATTERNS (numbers,pattern,name) VALUES (i,pattern,pattern_name);
