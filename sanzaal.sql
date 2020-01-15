@@ -1,30 +1,36 @@
 
 
 CREATE OR REPLACE PROCEDURE getPattern(X IN NUMBER,pattern OUT VARCHAR2 ) AS
-     TYPE num_table IS TABLE OF VARCHAR(20) INDEX BY VARCHAR(20);                                    -----index is indivisual number like index are 1,2,3,4 of 11234 contais ta count of number like  t(1) = 2
+    TYPE num_table IS TABLE OF VARCHAR(20) INDEX BY VARCHAR(20);                                    -----index is indivisual number like index are 1,2,3,4 of 11234 contais ta count of number like  t(1) = 2
+    tables num_table; 
     
-    TYPE labell IS TABLE Of VARCHAR(200) INDEX BY VARCHAR(200); 
+    TYPE labell IS TABLE Of VARCHAR(200) INDEX BY VARCHAR(200);
+    l  labell;
+    pattern_label_new labell ;
+    pattern_label labell ;
+    new_expression labell;
+    similar labell;
 
     TYPE exp IS TABLE Of VARCHAR(200) INDEX BY VARCHAR(200);
-                
-    type namesarray IS VARRAY(5) OF VARCHAR2(10); 
-    name namesarray := namesarray('x','y','z','w'); 
+    expression exp;
+          
+    type namesarray IS VARRAY(6) OF VARCHAR2(10); 
+    name namesarray := namesarray('x','y','z','w','*','*'); 
 
     type numarray IS TABLE OF VARCHAR(200);  
-    tables num_table;             
-     new_number_array2 numarray ;
-     old_number_array numarray ;
-     l  labell;
-     pattern_label_new labell ;
-     pattern_label labell ;
-     new_expression labell;
-     expression exp;
-     new_number_array numarray;
-     countt integer;
-     char VARCHAR(200);
-     similar labell;
-     n NUMBER(10); 
-     ii VARCHAR(200);
+    new_number_array2 numarray ;
+    old_number_array numarray ;
+    new_number_array numarray;
+    
+    
+    countt integer;
+    n NUMBER(10);
+    start_num_char number;
+    left_num number;
+    
+
+    char VARCHAR(200); 
+    ii VARCHAR(200);
     ii2 VARCHAR(200);
     counter2flag VARCHAR2(20);
     bestpattern  VARCHAR2(20);
@@ -237,7 +243,9 @@ FUNCTION ladder(X IN labell,Y IN numarray)RETURN labell IS  new_expression label
   BEGIN
     bestpattern := 'false';
     specialpattern := 'false';
-    char := to_char(X);                                                                                                         ----asigning a char of X to char
+    start_num_char := substr(to_char(X),2,8);
+    left_num := substr(to_char(X),1,1);
+    char :=start_num_char;                                                                                                         ----asigning a char of X to char
     n := LENGTH(char);   
     new_number_array := numarray();
      
@@ -294,14 +302,12 @@ FUNCTION ladder(X IN labell,Y IN numarray)RETURN labell IS  new_expression label
              
         else 
             expression(new_number_array(i)) := 'o';
-            
-    
         end if;
         
         
     
     end loop;
-    if countt-1 >4 or bestpattern= 'true' then
+    if countt-1 >=3 or bestpattern= 'true' then
         pattern_label_new := ladder(similar,old_number_array);
     else 
 
@@ -312,10 +318,7 @@ FUNCTION ladder(X IN labell,Y IN numarray)RETURN labell IS  new_expression label
          
         end loop;
         
-    end if;
-   
-    
-    if checks_condition_1('true',L)='false' then
+        if checks_condition_1('true',L)='false' then
         counter2flag :='true';
     
          for i in new_number_array.first .. new_number_array.last-1 loop
@@ -327,8 +330,7 @@ FUNCTION ladder(X IN labell,Y IN numarray)RETURN labell IS  new_expression label
         end loop;
 
    end if;
-    
-    pattern := 'true';
+   pattern := 'true';
 
    
     for i in new_number_array.first .. new_number_array.last-1 loop
@@ -368,6 +370,13 @@ FUNCTION ladder(X IN labell,Y IN numarray)RETURN labell IS  new_expression label
         
    end if;
    
+        
+    end if;
+   
+    
+    
+    
+    
    pattern := '';
    
    for i in old_number_array.First .. old_number_array.LAST loop
@@ -395,6 +404,7 @@ FUNCTION ladder(X IN labell,Y IN numarray)RETURN labell IS  new_expression label
       end if;
      
     end loop;
+     pattern := concat(left_num,pattern);
     --RETURN pattern;
 
   END;  
