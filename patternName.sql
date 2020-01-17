@@ -17,7 +17,7 @@ FUNCTION checks_condition_ladder(X IN VARCHAR2,names numarray,tabless num_table)
        
         for i in names.first .. names.last loop
             
-             if names(i) = X then
+             if names(i) = X and X != '*'then
               return 'true';
             end if;
         end loop;
@@ -72,7 +72,6 @@ BEGIN
     
     if (checks_condition(9,new_number_array,tables)='true') then
         pattern_name := concat(pattern_name,'Same 9 number');
-        DBMS_OUTPUT.PUT_LINE(pattern_name);
     elsif (checks_condition(8,new_number_array,tables)='true') then
         pattern_name := concat(pattern_name,'Same 8 number');
     elsif (checks_condition(7,new_number_array,tables)='true') and (checks_condition(2,new_number_array,tables)='true')  then
@@ -92,20 +91,20 @@ BEGIN
     elsif (checks_condition(5,new_number_array,tables)='true') and (checks_condition(2,new_number_array,tables)='true')  then
         pattern_name := concat(pattern_name,'Occurance of 5 and 2 same number');     
     elsif (checks_condition(5,new_number_array,tables)='true')   then
-        pattern_name := concat(pattern_name,'Same 5 number ');
+        pattern_name := concat(pattern_name,'Same 5 number non adj ');
     elsif (checks_condition(4,new_number_array,tables)='true') and (checks_condition(3,new_number_array,tables)='true')  then
-        pattern_name := concat(pattern_name,'Occurance of 4 and 3 same number');   
+        pattern_name := concat(pattern_name,'Occurance of 4 and 3 same number non adj');   
     elsif (checks_condition(4,new_number_array,tables)='true') and (checks_condition(2,new_number_array,tables)='true')  then
-        pattern_name := concat(pattern_name,'Occurance of 4 and 2 same number');
+        pattern_name := concat(pattern_name,'Occurance of 4 and 2 same number non adj');
     elsif (checks_condition(4,new_number_array,tables)='true')   then
-        pattern_name := concat(pattern_name,'Same 4 number ');    
+        pattern_name := concat(pattern_name,'Same 4 number non adj ');    
     elsif (checks_condition(3,new_number_array,tables)='true') and (checks_condition(2,new_number_array,tables)='true')  then
-        pattern_name := concat(pattern_name,'double and triple');
+        pattern_name := concat(pattern_name,'double and triple non adj');
         
     elsif (checks_condition(3,new_number_array,tables)='true')   then
-        pattern_name := concat(pattern_name,'triple ');  
+        pattern_name := concat(pattern_name,'triple non adj ');  
     elsif (checks_condition(2,new_number_array,tables)='true')   then
-        pattern_name := concat(pattern_name,'double'); 
+        pattern_name := concat(pattern_name,'same 2 numbers'); 
     
     end if;
     pattern_name := concat(pattern_name,'    ');
@@ -185,6 +184,7 @@ BEGIN
         end if;
         pattern_name := concat(pattern_name,to_char(n));
         pattern_name := concat(pattern_name,' dec');
+    
     
     end if;
     

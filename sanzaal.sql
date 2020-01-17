@@ -339,7 +339,8 @@ FUNCTION ladder(X IN labell,Y IN numarray)RETURN labell IS  new_expression label
        if l(new_number_array(i)) = 'true' and pattern = 'true'   then
 
            if countt>1 then
-                if checks_condition_3(new_number_array(i),similar)= 'false' and checks_condition_3(new_number_array(i)-1,similar)= 'false' and checks_condition_3(new_number_array(i)+1,similar)= 'false' then
+                if checks_condition_3(new_number_array(i),similar)= 'false' and checks_condition_3(new_number_array(i)-1,similar)= 'false' and checks_condition_3(new_number_array(i)+1,similar)= 'false' and
+                checks_condition_3(new_number_array(i)-2,similar)= 'false' and checks_condition_3(new_number_array(i)+2,similar)= 'false' then
   
                       expression(new_number_array(i)) := name(countt);
                       similar(countt) := new_number_array(i);
